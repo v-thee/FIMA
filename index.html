@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>e-FUND | Online Fund Request Management for the SSC</title>
+  <meta name="description" content="e-FUND is the Committee on Financial Management and Audit (COMMFIMA) fund request and approval system of the Supreme Student Council, BatStateU ARASOF-Nasugbu." />
+  <link rel="icon" href="images/SSC Logo.PNG" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="loading">
+
+  <!-- ============ LOADING SCREEN ============ -->
+  <div class="loader" id="loader" role="status" aria-live="polite">
+    <div class="loader-frame">
+      <div class="loader-inner">
+        <div class="stage">
+          <span class="glow"></span>
+
+          <!-- text circling the logo -->
+          <svg class="orbit-text" viewBox="0 0 300 300" aria-hidden="true">
+            <defs><path id="textRing" d="M150,150 m-126,0 a126,126 0 1,1 252,0 a126,126 0 1,1 -252,0"/></defs>
+            <text><textPath href="#textRing" textLength="790" lengthAdjust="spacing">SUPREME STUDENT COUNCIL &#8226; COMMFIMA &#8226; e-FUND &#8226; ONLINE FUND REQUESTS &#8226;</textPath></text>
+          </svg>
+
+          <!-- progress ring -->
+          <svg class="prog-ring" viewBox="0 0 300 300" aria-hidden="true">
+            <defs>
+              <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#55CFF5"/><stop offset=".5" stop-color="#EEA61C"/><stop offset="1" stop-color="#FF6F32"/>
+              </linearGradient>
+            </defs>
+            <circle class="track" cx="150" cy="150" r="104" pathLength="100"/>
+            <circle class="fill" id="ringFill" cx="150" cy="150" r="104" pathLength="100"/>
+          </svg>
+
+          <!-- orbiting dots -->
+          <span class="orb-dot od-1"><i></i></span>
+          <span class="orb-dot od-2"><i></i></span>
+          <span class="orb-dot od-3"><i></i></span>
+
+          <!-- logo with shine -->
+          <div class="logo-core">
+            <img src="images/SSC Logo.PNG" alt="Supreme Student Council logo" />
+            <span class="shine"></span>
+          </div>
+        </div>
+
+        <h2 class="loader-title">e&#8209;<b>FUND</b></h2>
+        <p class="loader-sub">Loading <span id="loaderPct">0</span>%</p>
+      </div>
+    </div>
+    <p class="loader-copy">&copy; 2026 Supreme Student Council &ndash; Committee on Financial Management and Audit. Batangas State University, The National Engineering University &ndash; ARASOF-Nasugbu.</p>
+  </div>
+
+  <!-- SVG icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></symbol>
+      <symbol id="i-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+      <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M22 6l-10 7L2 6"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- Ambient background -->
+  <div class="bg" aria-hidden="true">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+    <span class="orb orb-4"></span>
+  </div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav-wrap">
+    <nav class="nav glass" id="nav">
+      <a href="#home" class="brand" aria-label="e-FUND home">
+        <img src="images/SSC Logo.PNG" alt="Supreme Student Council logo" class="logo" />
+        <span class="brand-text"><span class="bt">e&#8209;<b>FUND</b></span><small>COMMFIMA &bull; SSC</small></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#workflow">Workflow</a></li>
+        <li><a href="#preview">Preview</a></li>
+        <li><a href="#sdg">SDGs</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li class="nav-mobile-cta"><a href="login.html" class="btn btn-primary btn-sm">Sign in</a></li>
+      </ul>
+      <a href="login.html" class="btn btn-primary btn-sm nav-cta">Sign in</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+        <svg class="ico"><use href="#i-menu"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main class="page">
+
+    <!-- ============ HERO ============ -->
+    <section class="frame reveal" id="home">
+      <div class="frame-inner hero">
+        <div class="hero-copy">
+          <span class="pill pill-dark"><i class="dot"></i> COMMFIMA &bull; Supreme Student Council</span>
+          <h1>e&#8209;FUND:<span class="grad">Fund requests, made simple.</span></h1>
+          <p class="lead">An online fund request management and approval system for the Supreme Student Council of Batangas State University, The National Engineering University &ndash; ARASOF-Nasugbu. Submit, upload, track and get approvals in one place &mdash; no more Google Forms.</p>
+
+          <div class="cta-row">
+            <a href="login.html" class="btn btn-primary"><svg class="ico"><use href="#i-lock"/></svg> Sign in with G Suite</a>
+            <a href="#workflow" class="btn btn-ghost">How it works <svg class="ico"><use href="#i-arrow"/></svg></a>
+          </div>
+
+          <div class="chips">
+            <div class="chip glass-s"><svg class="ico c-orange"><use href="#i-calendar"/></svg><div><small>Starts</small><b>November 2026</b></div></div>
+            <div class="chip glass-s"><svg class="ico c-deep"><use href="#i-clock"/></svg><div><small>Runs through</small><b>2nd Sem, AY 2026&ndash;2027</b></div></div>
+            <div class="chip glass-s"><svg class="ico c-gold"><use href="#i-layers"/></svg><div><small>Replaces</small><b>Google Forms</b></div></div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <span class="float-badge fb-1 glass-s"><svg class="ico c-deep"><use href="#i-bell"/></svg> Deadline in 2 days</span>
+          <span class="float-badge fb-2 glass-s"><svg class="ico c-orange"><use href="#i-check"/></svg> Approved</span>
+
+          <article class="req-card">
+            <div class="req-top">
+              <div class="req-id">
+                <img src="images/CommFIMA.PNG" alt="COMMFIMA logo" class="logo req-logo" />
+                <div>
+                  <small>Fund Request &bull; Sample</small>
+                  <h3>Project Name Here</h3>
+                </div>
+              </div>
+              <span class="status status-review">Under review</span>
+            </div>
+
+            <ol class="stepper" id="stepper">
+              <li class="done"><i></i><span>Submitted</span></li>
+              <li class="done"><i></i><span>Documents</span></li>
+              <li class="current"><i></i><span>Review</span></li>
+              <li><i></i><span>Approved</span></li>
+              <li><i></i><span>Released</span></li>
+            </ol>
+
+            <div class="req-docs">
+              <div class="doc"><svg class="ico"><use href="#i-file"/></svg> Approved Resolution <em>&check;</em></div>
+              <div class="doc"><svg class="ico"><use href="#i-file"/></svg> Signature <em>&check;</em></div>
+              <div class="doc"><svg class="ico"><use href="#i-file"/></svg> Disbursement Voucher <em class="wait">&hellip;</em></div>
+            </div>
+
+            <div class="qr-row">
+              <div class="remarks"><small>COMMFIMA remarks</small><p>&ldquo;All requirements complete. For final approval.&rdquo;</p></div>
+              <div class="mini-bars" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+          </article>
+
+          <div class="mini-stats glass-s">
+            <div><b data-count="10">0</b><small>Features</small></div>
+            <div><b data-count="3">0</b><small>SDGs</small></div>
+            <div><b>1</b><small>Platform</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ AUDIENCE ============ -->
+    <section class="frame reveal" id="about">
+      <div class="frame-inner">
+        <header class="sec-head">
+          <span class="pill">Who it&rsquo;s for</span>
+          <h2>Built exclusively for the <span class="grad">SSC community</span></h2>
+          <p>e-FUND is intended only for the Supreme Student Council of BatStateU ARASOF-Nasugbu and the committee that manages its finances.</p>
+        </header>
+
+        <div class="grid-3">
+          <article class="card glass-s tilt">
+            <div class="icon-tile t-sky"><svg class="ico"><use href="#i-users"/></svg></div>
+            <h3>SSC Officers</h3>
+            <p>Submit fund requests for your committees and projects, upload the required supporting documents, and monitor every status update.</p>
+            <span class="tag">Primary users</span>
+          </article>
+          <article class="card glass-s tilt">
+            <div class="icon-tile t-orange"><svg class="ico"><use href="#i-shield"/></svg></div>
+            <h3>COMMFIMA</h3>
+            <p>The Committee on Financial Management and Audit reviews submissions, gives remarks, manages approvals and keeps organized records.</p>
+            <span class="tag tag-orange">Administrators</span>
+          </article>
+          <article class="card glass-s tilt">
+            <div class="icon-tile t-gold"><svg class="ico"><use href="#i-pin"/></svg></div>
+            <h3>BatStateU ARASOF-Nasugbu</h3>
+            <p>A digital initiative of the SSC of The National Engineering University &ndash; ARASOF-Nasugbu, rolled out with orientation sessions for all users.</p>
+            <span class="tag tag-gold">Exclusive to SSC</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RATIONALE + OBJECTIVES ============ -->
+    <section class="frame reveal">
+      <div class="frame-inner">
+        <div class="banner glass-s">
+          <div class="banner-copy">
+            <span class="pill">Rationale</span>
+            <h2>Replacing Google Forms with a <span class="grad">centralized platform</span></h2>
+            <p>The Fund Request Management System automates and streamlines how student organizations request funds. Officers submit requests, upload documents and track progress, while COMMFIMA efficiently reviews submissions, manages approvals and keeps digital financial records.</p>
+            <ul class="checks">
+              <li><svg class="ico"><use href="#i-check"/></svg> Reduce manual administrative tasks</li>
+              <li><svg class="ico"><use href="#i-check"/></svg> Organized, centralized digital records</li>
+            </ul>
+          </div>
+          <div class="banner-side">
+            <h3>Objectives</h3>
+            <ol class="obj">
+              <li><b>1</b><p>A centralized platform for officers to submit fund requests and upload supporting documents electronically.</p></li>
+              <li><b>2</b><p>Automate the review, approval and status monitoring so COMMFIMA can manage and track each submission.</p></li>
+              <li><b>3</b><p>Improve document management and maintain organized digital records for transparency and accountability.</p></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURES ============ -->
+    <section class="frame reveal" id="features">
+      <div class="frame-inner">
+        <header class="sec-head">
+          <span class="pill">System features</span>
+          <h2>Everything a fund request <span class="grad">needs</span></h2>
+          <p>Ten core features covering the full request lifecycle, from sign-in to audit.</p>
+        </header>
+
+        <div class="fx" id="fx" data-c="sky">
+        <span class="fx-orb o1"></span><span class="fx-orb o2"></span><span class="fx-orb o3"></span>
+
+        <div class="road" aria-label="System features roadmap">
+          <div class="road-groups"><span>Access</span><span>Request</span><span>Monitor</span></div>
+          <ol class="road-nodes" id="road">
+            <div class="road-track"><i class="road-fill" id="roadFill"></i></div>
+            <li data-c="sky" class="active"><button class="node" type="button" data-i="0" data-title="User Authentication" data-desc="Secure sign-in for authorized SSC officers and COMMFIMA, with the Data Privacy Policy acknowledged up front." aria-label="User Authentication">1</button><span class="lbl">Sign in</span></li>
+            <li data-c="orange"><button class="node" type="button" data-i="1" data-title="User Management" data-desc="Create accounts and assign roles so officers and administrators only see what they should." aria-label="User Management">2</button><span class="lbl">Users</span></li>
+            <li data-c="gold"><button class="node" type="button" data-i="2" data-title="Fund Request Submission" data-desc="Officers file a fund request online for their committee or project, replacing the Google Form." aria-label="Fund Request Submission">3</button><span class="lbl">Request</span></li>
+            <li data-c="sky"><button class="node" type="button" data-i="3" data-title="Document Upload" data-desc="Attach the approved resolution, signature and other supporting documents right on the request." aria-label="Document Upload">4</button><span class="lbl">Upload</span></li>
+            <li data-c="orange"><button class="node" type="button" data-i="4" data-title="Approval Workflow" data-desc="COMMFIMA reviews, leaves remarks and updates the status, so every request has a clear next step." aria-label="Approval Workflow">5</button><span class="lbl">Approval</span></li>
+            <li data-c="gold"><button class="node" type="button" data-i="5" data-title="Calendar Integration" data-desc="Schedules and deadlines sit on one calendar so nothing gets missed." aria-label="Calendar Integration">6</button><span class="lbl">Calendar</span></li>
+            <li data-c="sky"><button class="node" type="button" data-i="6" data-title="Notifications &amp; Reminders" data-desc="Automatic alerts for deadlines and status changes keep officers and COMMFIMA in sync." aria-label="Notifications &amp; Reminders">7</button><span class="lbl">Alerts</span></li>
+            <li data-c="orange"><button class="node" type="button" data-i="7" data-title="Dashboard &amp; Reports" data-desc="Total funds, requests and projects at a glance, ready for reporting." aria-label="Dashboard &amp; Reports">8</button><span class="lbl">Dashboard</span></li>
+            <li data-c="gold"><button class="node" type="button" data-i="8" data-title="Search &amp; Filter" data-desc="Find any request or project instantly and narrow down by status." aria-label="Search &amp; Filter">9</button><span class="lbl">Search</span></li>
+            <li data-c="sky"><button class="node" type="button" data-i="9" data-title="Audit Trail" data-desc="Every action is logged to support transparency and accountability." aria-label="Audit Trail">10</button><span class="lbl">Audit</span></li>
+          </ol>
+        </div>
+
+        <div class="fx-stage">
+          <div class="fx-info">
+            <span class="fx-step">Step <b id="fxNo">01</b> / 10</span>
+            <h3 id="fxTitle">User Authentication</h3>
+            <p id="fxDesc">Secure sign-in for authorized SSC officers and COMMFIMA, with the Data Privacy Policy acknowledged up front.</p>
+          </div>
+          <div class="fx-screen">
+              <div class="fx-panel active" data-i="0"><div class="m-center"><div class="m-ring"><svg class="ico"><use href="#i-lock"/></svg></div><b class="m-h">Sign in</b>
+<div class="m-input"><svg class="ico"><use href="#i-user"/></svg> sign in using your G Suite account</div>
+<label class="m-check"><i class="on"></i> I acknowledge the Data Privacy Policy</label>
+<div class="m-btn">Sign in</div></div></div>
+              <div class="fx-panel" data-i="1"><div class="m-list">
+<div class="m-row"><span class="m-av a1"></span><div><b>SSC Officer</b><small>Submits requests</small></div><em class="m-chip sky">Officer</em></div>
+<div class="m-row"><span class="m-av a2"></span><div><b>COMMFIMA Member</b><small>Reviews &amp; approves</small></div><em class="m-chip orange">Admin</em></div></div></div>
+              <div class="fx-panel" data-i="2"><div class="m-form">
+<div class="m-field"><small>Project name</small><span>Project Name Here</span></div>
+<div class="m-field"><small>Amount requested</small><span>PHP 25,000.00</span></div>
+<div class="m-btn right"><svg class="ico"><use href="#i-send"/></svg> Submit request</div></div></div>
+              <div class="fx-panel" data-i="3"><div class="m-drop"><svg class="ico"><use href="#i-upload"/></svg><b>Upload the approved resolution</b><small>PDF or image &bull; drag &amp; drop</small></div>
+<div class="m-files">
+<div class="m-file"><svg class="ico"><use href="#i-file"/></svg><span>Approved Resolution</span><em class="ok"><svg class="ico"><use href="#i-check"/></svg></em></div>
+<div class="m-file"><svg class="ico"><use href="#i-file"/></svg><span>Signature</span><i class="m-prog"><b></b></i></div></div></div>
+              <div class="fx-panel" data-i="4"><ol class="m-tl">
+<li class="d"><i></i><b>Submitted</b><small>Request received with documents</small></li>
+<li class="c"><i></i><b>Under review</b><div class="m-bubble"><small>COMMFIMA remarks</small>All requirements complete. For final approval.</div></li>
+<li><i></i><b>Approved</b><small>Status updates automatically</small></li></ol></div>
+              <div class="fx-panel" data-i="5"><div class="m-cal"><div class="m-cal-h"><b>November 2026</b><small>Sample</small></div><div class="m-cal-g"><small class="dow">S</small><small class="dow">M</small><small class="dow">T</small><small class="dow">W</small><small class="dow">T</small><small class="dow">F</small><small class="dow">S</small><span class="">1</span><span class="">2</span><span class="">3</span><span class="">4</span><span class="">5</span><span class="">6</span><span class="">7</span><span class="">8</span><span class="">9</span><span class="">10</span><span class="">11</span><span class="">12</span><span class="">13</span><span class="">14</span><span class="today">15</span><span class="">16</span><span class="">17</span><span class="dl">18</span><span class="">19</span><span class="">20</span><span class="">21</span><span class="">22</span><span class="">23</span><span class="">24</span><span class="dl">25</span><span class="">26</span><span class="">27</span><span class="">28</span><span class="">29</span><span class="">30</span></div></div></div>
+              <div class="fx-panel" data-i="6"><div class="m-toasts">
+<div class="m-toast"><svg class="ico"><use href="#i-bell"/></svg><div><b>Deadline reminder</b><small>Documents are due in 2 days</small></div><em>now</em></div>
+<div class="m-toast"><svg class="ico"><use href="#i-check"/></svg><div><b>Status updated</b><small>Your request was approved</small></div><em>2m</em></div></div></div>
+              <div class="fx-panel" data-i="7"><div class="m-stats"><div><small>Total funds</small><b>100k</b></div><div><small>Requests</small><b>19</b></div><div><small>Projects</small><b>19</b></div></div>
+<div class="m-bars"><span style="--h:42%"></span><span style="--h:66%"></span><span style="--h:52%"></span><span style="--h:88%"></span><span style="--h:60%"></span><span style="--h:100%"></span><span style="--h:74%"></span></div></div>
+              <div class="fx-panel" data-i="8"><div class="m-input"><svg class="ico"><use href="#i-search"/></svg> Search requests or projects&hellip;</div>
+<div class="m-chips"><em class="on">All</em><em>Pending</em><em>Approved</em><em>Released</em></div>
+<div class="m-res"><div><b>Project Name Here</b><small>Under review</small></div><div><b>Another Project</b><small>Approved</small></div></div></div>
+              <div class="fx-panel" data-i="9"><ul class="m-log">
+<li><i></i><b>Request submitted</b><small>Officer</small></li>
+<li><i></i><b>Remarks added</b><small>COMMFIMA</small></li>
+<li><i></i><b>Status changed to Approved</b><small>COMMFIMA</small></li></ul></div>
+          </div>
+          <span class="fx-time"><i id="fxTime"></i></span>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- ============ WORKFLOW ============ -->
+    <section class="frame reveal" id="workflow">
+      <div class="frame-inner">
+        <header class="sec-head">
+          <span class="pill">How it works</span>
+          <h2>From request to release in <span class="grad">five steps</span></h2>
+        </header>
+
+        <ol class="flow">
+          <li class="glass-s"><span class="num">01</span><h3>Sign in</h3><p>Use your authorized G Suite account and accept the Data Privacy Policy.</p></li>
+          <li class="glass-s"><span class="num">02</span><h3>Request fund</h3><p>Fill in the project details and submit your fund request.</p></li>
+          <li class="glass-s"><span class="num">03</span><h3>Upload documents</h3><p>Attach the approved resolution, signature and other requirements.</p></li>
+          <li class="glass-s"><span class="num">04</span><h3>COMMFIMA review</h3><p>Administrators review, add remarks and update the status.</p></li>
+          <li class="glass-s"><span class="num">05</span><h3>Track &amp; record</h3><p>Get notified, track progress and keep records in the repository.</p></li>
+        </ol>
+        <p class="quote">&ldquo;Every peso counts. This portal ensures that every fund request is reviewed, recorded, and released with full integrity.&rdquo;</p>
+      </div>
+    </section>
+
+    <!-- ============ UI PREVIEW ============ -->
+    <section class="frame reveal" id="preview">
+      <div class="frame-inner">
+        <header class="sec-head">
+          <span class="pill">Example user interface</span>
+          <h2>A look inside <span class="grad">e&#8209;FUND</span></h2>
+        </header>
+
+        <div class="tabs" role="tablist" id="tabs">
+          <button role="tab" class="tab active" data-img="images/ui-landing.png" data-cap="Landing page &mdash; Sign in with G Suite">Landing page</button>
+          <button role="tab" class="tab" data-img="images/ui-dashboard.png" data-cap="Home dashboard &mdash; total funds, requests, projects and notifications">Home dashboard</button>
+          <button role="tab" class="tab" data-img="images/ui-request.png" data-cap="Request fund &mdash; upload the approved resolution and signature">Request fund</button>
+          <button role="tab" class="tab" data-img="images/ui-voucher.png" data-cap="Disbursement voucher &mdash; project folders">Disbursement voucher</button>
+        </div>
+
+        <div class="shot glass-s">
+          <img id="shotImg" src="images/ui-landing.png" alt="e-FUND landing page preview" />
+        </div>
+        <p class="caption" id="shotCap">Landing page &mdash; Sign in with G Suite</p>
+      </div>
+    </section>
+
+    <!-- ============ SDG + TIMELINE + BUDGET ============ -->
+    <section class="frame reveal" id="sdg">
+      <div class="frame-inner">
+        <header class="sec-head">
+          <span class="pill">Impact &amp; implementation</span>
+          <h2>Anchored on the <span class="grad">UN&nbsp;SDGs</span></h2>
+          <p>e-FUND promotes digital innovation and strengthens transparency, accountability and efficiency in financial management.</p>
+        </header>
+
+        <div class="grid-3">
+          <article class="card glass-s tilt sdg"><span class="sdg-no s4">4</span><h3>Quality Education</h3><p>Academic-related activity supporting student leaders.</p></article>
+          <article class="card glass-s tilt sdg"><span class="sdg-no s9">9</span><h3>Industry, Innovation &amp; Infrastructure</h3><p>Automating administrative processes through digital innovation.</p></article>
+          <article class="card glass-s tilt sdg"><span class="sdg-no s16">16</span><h3>Peace, Justice &amp; Strong Institutions</h3><p>Transparent, accountable and systematic financial management.</p></article>
+        </div>
+
+        <div class="split">
+          <div class="glass-s panel">
+            <h3><svg class="ico c-orange"><use href="#i-calendar"/></svg> Implementation</h3>
+            <ul class="timeline">
+              <li><b>November 2026</b><p>e-FUND goes live as the official SSC fund request platform.</p></li>
+              <li><b>Orientation sessions</b><p>SSC officers and COMMFIMA members learn the features and functions.</p></li>
+              <li><b>2nd Semester, AY 2026&ndash;2027</b><p>Continuous use for submitting, reviewing, approving and tracking requests.</p></li>
+            </ul>
+            <div class="tags"><span class="tag">Academic Related</span><span class="tag tag-orange">Special Interest</span></div>
+          </div>
+
+          <div class="glass-s panel">
+            <h3><svg class="ico c-deep"><use href="#i-chart"/></svg> Budget proposal</h3>
+            <table class="budget">
+              <thead><tr><th>Particulars</th><th>Qty</th><th>Unit cost</th><th>Total</th></tr></thead>
+              <tbody><tr><td data-label="Particulars">Domain</td><td data-label="Quantity">1</td><td data-label="Unit cost">PHP 1,800.00</td><td data-label="Total cost">PHP 1,800.00</td></tr></tbody>
+              <tfoot><tr><td colspan="3">Total projected expenses</td><td>PHP 1,800.00</td></tr></tfoot>
+            </table>
+            <p class="note">A lean, domain-only budget keeps the project sustainable.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA / CONTACT ============ -->
+    <section class="frame reveal" id="contact">
+      <div class="frame-inner">
+        <div class="cta glass-s">
+          <div>
+            <span class="pill pill-dark">Ready when you are</span>
+            <h2>Start your fund request with <span class="grad">e&#8209;FUND</span></h2>
+            <p>Sign in with your authorized G Suite account, or reach out to COMMFIMA for orientation and support.</p>
+            <ul class="checks">
+              <li><svg class="ico"><use href="#i-check"/></svg> Paperless, trackable submissions</li>
+              <li><svg class="ico"><use href="#i-check"/></svg> Transparent approval with remarks</li>
+            </ul>
+          </div>
+          <div class="cta-actions">
+            <a href="login.html" class="btn btn-primary btn-wide"><svg class="ico"><use href="#i-lock"/></svg> Sign in with G Suite</a>
+            <a href="#" class="btn btn-ghost btn-wide"><svg class="ico"><use href="#i-mail"/></svg> Contact COMMFIMA</a>
+            <small>Supreme Student Council &bull; BatStateU ARASOF-Nasugbu</small>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="foot glass-s">
+      <div class="brand">
+        <img src="images/SSC Logo.PNG" alt="" class="logo sm" />
+        <span class="brand-text"><span class="bt">e&#8209;<b>FUND</b></span></span>
+      </div>
+      <p>&copy; <span id="year">2026</span> Supreme Student Council &ndash; Committee on Financial Management and Audit. Batangas State University, The National Engineering University &ndash; ARASOF-Nasugbu.</p>
+    </div>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>

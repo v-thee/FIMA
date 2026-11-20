@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create account | e-FUND</title>
+  <link rel="icon" href="images/SSC Logo.PNG" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body class="auth-body">
+  <div class="bg" aria-hidden="true"><span class="orb orb-1"></span><span class="orb orb-2"></span><span class="orb orb-3"></span><span class="orb orb-4"></span></div>
+
+  <main class="auth">
+    <section class="frame auth-frame">
+      <div class="frame-inner auth-grid">
+
+        <aside class="auth-art">
+          <div class="art-top">
+            <a href="index.html" class="back"><svg class="ico"><use href="#i-back"/></svg> Back to home</a>
+            <div class="art-logos">
+              <img src="images/CommFIMA.PNG" alt="COMMFIMA logo" onerror="this.style.display='none'" />
+              <img src="images/SSC Logo.PNG" alt="Supreme Student Council logo" onerror="this.style.display='none'" />
+            </div>
+          </div>
+          <div class="art-mid">
+            <h1>Empowering SSC officers<span>through organized and transparent fund management.</span></h1>
+            <p>Submit fund requests, upload documents and track every approval in one place &mdash; the official platform of the Committee on Financial Management and Audit.</p>
+            <div class="art-quote">&ldquo;Every peso counts. This portal ensures that every fund request is reviewed, recorded, and released with full integrity.&rdquo;</div>
+          </div>
+          <div class="art-bot">
+            <div class="art-chips"><span><svg class="ico"><use href="#i-upload"/></svg> Paperless</span><span><svg class="ico"><use href="#i-clock"/></svg> Trackable</span><span><svg class="ico"><use href="#i-shield"/></svg> Transparent</span></div>
+            <span class="art-tag">Puso. Dedikasyon. at Talino</span>
+          </div>
+        </aside>
+
+        <div class="auth-card">
+          <h2>Create your account</h2>
+          <p class="sub">For authorized SSC officers and COMMFIMA members.</p>
+
+          <div class="alert" id="alert" role="alert"><svg class="ico"><use href="#i-alert"/></svg><span id="alertMsg"></span></div>
+
+          <form id="signupForm" novalidate>
+            <div class="field" id="fName">
+              <label for="name">Full name</label>
+              <div class="input"><svg class="ico"><use href="#i-user"/></svg><input id="name" type="text" autocomplete="name" placeholder="Juan Dela Cruz" /></div>
+              <span class="err-msg">Enter your full name.</span>
+            </div>
+            <div class="field" id="fEmail">
+              <label for="email">Email</label>
+              <div class="input"><svg class="ico"><use href="#i-mail"/></svg><input id="email" type="email" autocomplete="email" placeholder="you@example.com" /></div>
+              <span class="err-msg">Enter a valid email address.</span>
+            </div>
+            <div class="field">
+              <span class="lbl">I am a</span>
+              <div class="seg">
+                <label><input type="radio" name="role" value="officer" checked /> SSC Officer</label>
+                <label><input type="radio" name="role" value="admin" /> COMMFIMA Member</label>
+              </div>
+            </div>
+            <div class="field" id="fCommittee">
+              <label for="committee">Committee / position</label>
+              <div class="input"><svg class="ico"><use href="#i-users"/></svg><input id="committee" type="text" placeholder="e.g. Committee on ..." /></div>
+              <span class="err-msg">Enter your committee or position.</span>
+            </div>
+            <div class="two">
+              <div class="field" id="fPass">
+                <label for="password">Password</label>
+                <div class="input has-toggle"><svg class="ico"><use href="#i-lock"/></svg><input id="password" type="password" autocomplete="new-password" placeholder="Min. 8 characters" />
+                  <button type="button" class="pw-toggle" data-target="password" aria-label="Show password"><svg class="ico"><use href="#i-eye"/></svg></button></div>
+                <div class="meter" id="meter" data-s="0"><i></i><i></i><i></i><i></i></div>
+                <span class="meter-txt" id="meterTxt">Use 8+ characters with letters and numbers.</span>
+                <span class="err-msg">Password must be at least 8 characters.</span>
+              </div>
+              <div class="field" id="fConfirm">
+                <label for="confirm">Confirm</label>
+                <div class="input has-toggle"><svg class="ico"><use href="#i-lock"/></svg><input id="confirm" type="password" autocomplete="new-password" placeholder="Repeat password" />
+                  <button type="button" class="pw-toggle" data-target="confirm" aria-label="Show password"><svg class="ico"><use href="#i-eye"/></svg></button></div>
+                <span class="err-msg">Passwords do not match.</span>
+              </div>
+            </div>
+            <label class="check" id="fPriv"><input type="checkbox" id="privacy" /><i></i><span>I acknowledge that I have read the <a href="#" onclick="return false">Data Privacy Policy</a>.</span></label>
+            <button class="btn btn-primary" type="submit" id="submitBtn">Create account <svg class="ico"><use href="#i-arrow"/></svg></button>
+          </form>
+
+          <p class="auth-foot">Already have an account? <a href="login.html">Sign in</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="icons.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>

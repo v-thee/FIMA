@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | e-FUND</title>
+  <link rel="icon" href="images/SSC Logo.PNG" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body class="dash-body">
+  <div class="bg" aria-hidden="true"><span class="orb orb-1"></span><span class="orb orb-2"></span><span class="orb orb-3"></span><span class="orb orb-4"></span></div>
+
+  <div class="scrim" id="scrim"></div>
+
+  <div class="app">
+    <!-- ===== Sidebar ===== -->
+    <aside class="sb-frame" id="sidebar" aria-label="Main navigation">
+      <div class="sb">
+        <div class="sb-brand">
+          <img src="images/SSC Logo.PNG" alt="SSC logo" class="logo" onerror="this.style.display='none'" />
+          <span>e&#8209;<b>FUND</b></span>
+          <button class="sb-close" id="sbClose" aria-label="Close menu"><svg class="ico"><use href="#i-x"/></svg></button>
+        </div>
+
+        <div class="sb-user">
+          <span class="avatar" id="uAv">?</span>
+          <small>Welcome,</small>
+          <b id="uName">&hellip;</b>
+          <em class="role-chip" id="uRole"></em>
+        </div>
+
+        <nav class="sb-nav" id="nav">
+          <button data-view="home"><svg class="ico"><use href="#i-home"/></svg><span>Home</span></button>
+          <button data-view="requests"><svg class="ico"><use href="#i-send"/></svg><span>Request Fund</span><i class="count" id="cReq"></i></button>
+          <button data-view="vouchers"><svg class="ico"><use href="#i-folder"/></svg><span>Disbursement Voucher</span></button>
+          <button data-view="checks"><svg class="ico"><use href="#i-card"/></svg><span>Checks</span></button>
+          <button data-view="projects"><svg class="ico"><use href="#i-brief"/></svg><span>Projects</span></button>
+        </nav>
+
+        <button class="sb-out" id="logout"><svg class="ico"><use href="#i-logout"/></svg> Log out</button>
+      </div>
+    </aside>
+
+    <!-- ===== Main ===== -->
+    <div class="main-frame">
+      <div class="main">
+        <header class="topbar glass-s">
+          <button class="icon-btn menu" id="menuBtn" aria-label="Open menu"><svg class="ico"><use href="#i-menu"/></svg></button>
+          <div class="crumb"><small>Supreme Student Council</small><h1 id="pageTitle">Home</h1></div>
+          <div class="top-actions">
+            <div class="pop-wrap">
+              <button class="icon-btn" id="bellBtn" aria-label="Notifications" aria-expanded="false"><svg class="ico"><use href="#i-bell"/></svg><i class="badge" id="bellBadge" hidden>0</i></button>
+              <div class="pop glass" id="pop" hidden>
+                <div class="pop-head"><b>Notifications</b><button id="markRead">Mark all read</button></div>
+                <div id="popList"></div>
+              </div>
+            </div>
+            <span class="avatar sm" id="uAv2">?</span>
+          </div>
+        </header>
+
+        <div id="view" class="view"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-root" id="modalRoot" hidden></div>
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <script src="icons.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
